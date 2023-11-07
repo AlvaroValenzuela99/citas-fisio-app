@@ -14,13 +14,13 @@ function App() {
         <Route path="/" element={<Home />} />
 
       {/* Ruta Paciente */}
-        <Route path="paciente" element={<Paciente />}>
-          <Route path="reservar" element={<Reservar />} />
-          <Route path="cambiar-cita" element={<CambiarCita />} />
-        </Route>
+        <Route path="/paciente" element={<Paciente />}/>
+        <Route path="/paciente/reservar" element={<Reservar />} />
+        <Route path="/paciente/cambiar-cita" element={<CambiarCita />} />
+        
 
       {/* Ruta Admin */}
-        <Route path="admin" element={<Admin />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );
