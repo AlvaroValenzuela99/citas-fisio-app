@@ -1,30 +1,29 @@
 import './App.css';
-import { BrowserRouter,Routes, Route, Link } from 'react-router-dom';
-import Paciente from './components/Paciente';
-import Admin from './components/Admin';
+import { BrowserRouter,Routes, Route } from 'react-router-dom';
+import Home from './pages/Home'
+import Paciente from './pages/Paciente';
+import Admin from './pages/Admin';
+import Reservar from './pages/Reservar';
+import CambiarCita from './pages/CambiarCita';
 
 function App() {
   return (
-      <div className="App">
-        <h1 className='title'>Clínica de Fisioterapia Álvaro Valenzuela</h1>
-        <div className='container'>
-          <Link to='/paciente' className='patient-btn'>Paciente</Link>
-          <Link to='/admin' className='admin-btn'>Admin</Link>
-        </div>
-      </div>
-  );
-}
-
-function Main() {
-  return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/paciente/*" element={<Paciente />} />
-        <Route path="/admin/*" element={<Admin />} />
+      {/* Ruta Home */}
+        <Route path="/" element={<Home />} />
+
+      {/* Ruta Paciente */}
+        <Route path="paciente" element={<Paciente />}>
+          <Route path="reservar" element={<Reservar />} />
+          <Route path="cambiar-cita" element={<CambiarCita />} />
+        </Route>
+
+      {/* Ruta Admin */}
+        <Route path="admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );
 }
 
-export default Main;
+export default App;
