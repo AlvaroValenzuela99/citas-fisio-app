@@ -3,6 +3,9 @@ import '../App.css';
 
 export default function CambiarCita() {
   return (
-    <div>CambiarCita</div>
+    <div className='App'>
+      <h1 className='title'>Clínica de Fisioterapia Álvaro Valenzuela</h1>
+      <p>Aqui puedes cambiar tu cita</p>
+    </div>
   )
 }
