@@ -6,8 +6,10 @@ export default function Reservar() {
   return (
     <div className='App'>
       <h1 className='title'>Clínica de Fisioterapia Álvaro Valenzuela</h1>
-      <p>¡Aquí puedes reservar tu cita!</p>
-      <Calendar />
+      <div className='container'>
+        <p>¡Aquí puedes reservar tu cita!</p>
+        <Calendar />
+      </div>   
     </div>
   )
 }
