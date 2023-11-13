@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface HorarioRepository extends JpaRepository<Horario, Integer> {
 
-    // that's it ... no need to write any code LOL!
+    // no hace falta escribir codigo
 }
