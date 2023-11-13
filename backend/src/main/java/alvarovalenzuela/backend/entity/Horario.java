@@ -10,25 +10,32 @@ public class Horario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "anio")
     private Integer anio;
 
+    @Column(name = "mes")
     private Integer mes;
 
+    @Column(name = "dia_semana")
     private Integer diaSemana;
 
+    @Column(name = "hora_inicio")
     private LocalTime horaInicio;
 
+    @Column(name = "hora_fin")
     private LocalTime horaFin;
 
-    private Boolean disponible;
+    @Column(name = "disponible")
+    private boolean disponible;
 
     public Horario(){
 
     }
 
-    public Horario(Integer anio, Integer mes, Integer diaSemana, LocalTime horaInicio, LocalTime horaFin, Boolean disponible) {
+    public Horario(Integer anio, Integer mes, Integer diaSemana, LocalTime horaInicio, LocalTime horaFin, boolean disponible) {
         this.anio = anio;
         this.mes = mes;
         this.diaSemana = diaSemana;
@@ -85,11 +92,11 @@ public class Horario {
         this.horaFin = horaFin;
     }
 
-    public Boolean getDisponible() {
+    public boolean getDisponible() {
         return disponible;
     }
 
-    public void setDisponible(Boolean disponible) {
+    public void setDisponible(boolean disponible) {
         this.disponible = disponible;
     }
 

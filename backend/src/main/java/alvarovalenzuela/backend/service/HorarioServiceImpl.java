@@ -26,18 +26,8 @@ public class HorarioServiceImpl implements HorarioService{
 
     @Override
     public Horario findById(int theId) {
-        Optional<Horario> result = horarioRepository.findById(theId);
-
-        Horario horario = null;
-
-        if(result.isPresent()){
-            horario = result.get();
-        }else{
-            // no se ha encontrado el horario
-            throw new RuntimeException("No se ha encontrado el horario id - " + theId);
-        }
-
-        return horario;
+        return horarioRepository.findById(theId)
+                .orElseThrow(() -> new RuntimeException("No se ha encontrado el horario id - " + theId));
     }
 
     @Override

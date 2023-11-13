@@ -11,19 +11,29 @@ public class Cita {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "id")
     private Long id;
 
+    @Column(name = "fecha_cita")
     private LocalDate fechaCita;
 
+    @Column(name = "hora_inicio")
     private LocalTime horaInicio;
 
+    @Column(name = "hora_fin")
     private LocalTime horaFin;
 
+    @Column(name = "nombre")
     private String nombre;
 
+    @Column(name = "apellidos")
     private String apellidos;
 
+    @Column(name = "telefono")
     private String telefono;
+
+    @Column(name = "dispoinble")
+    private boolean disponible;
 
 
     // Constructores
@@ -31,13 +41,14 @@ public class Cita {
 
     }
 
-    public Cita(LocalDate fechaCita, LocalTime horaInicio, LocalTime horaFin, String nombre, String apellidos, String telefono) {
+    public Cita(LocalDate fechaCita, LocalTime horaInicio, LocalTime horaFin, String nombre, String apellidos, String telefono, boolean disponible) {
         this.fechaCita = fechaCita;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.telefono = telefono;
+        this.disponible = disponible;
     }
 
     // Getters y Setters
@@ -98,6 +109,14 @@ public class Cita {
         this.telefono = telefono;
     }
 
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
     @Override
     public String toString() {
         return "Cita{" +
@@ -108,6 +127,7 @@ public class Cita {
                 ", nombre='" + nombre + '\'' +
                 ", apellidos='" + apellidos + '\'' +
                 ", telefono='" + telefono + '\'' +
+                ", disponible=" + disponible +
                 '}';
     }
 }
