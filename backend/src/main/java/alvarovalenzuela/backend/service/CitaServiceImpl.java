@@ -7,6 +7,7 @@ import alvarovalenzuela.backend.entity.Horario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,16 +53,22 @@ public class CitaServiceImpl implements CitaService{
         List<Cita> citasGeneradas = new ArrayList<>();
 
         for (Horario horario : horariosDisponibles) {
-            LocalDateTime fechaInicio = LocalDateTime.of(horario.getAnio(), mes, horario.getDiaSemana(), horario.getHoraInicio().getHour(), horario.getHoraInicio().getMinute());
+            LocalDateTime fechaInicio = LocalDateTime.of(horario.getAnio(), mes, 1, horario.getHoraInicio().getHour(), horario.getHoraInicio().getMinute());
 
-            while (fechaInicio.plusMinutes(60).isBefore(fechaInicio.plusHours(1))) {
-                Cita cita = new Cita();
-                cita.setFechaCita(fechaInicio.toLocalDate());
-                cita.setHoraInicio(fechaInicio.toLocalTime());
-                cita.setHoraFin(fechaInicio.plusMinutes(60).toLocalTime());
-                cita.setDisponible(true); // Por defecto, está disponible al añadirse
+            while (fechaInicio.isBefore(LocalDateTime.of(horario.getAnio(), mes + 1, 1, 0, 0))) {
+                // Verificar que la fecha de inicio esté dentro del rango de horaInicio a horaFin
+                // Y que no sea ni sábado ni domingo
+                if (!fechaInicio.toLocalTime().isBefore(horario.getHoraInicio())
+                        && fechaInicio.toLocalTime().isBefore(horario.getHoraFin())
+                        && (fechaInicio.getDayOfWeek() != DayOfWeek.SATURDAY && fechaInicio.getDayOfWeek() != DayOfWeek.SUNDAY)) {
+                    Cita cita = new Cita();
+                    cita.setFechaCita(fechaInicio.toLocalDate());
+                    cita.setHoraInicio(fechaInicio.toLocalTime());
+                    cita.setHoraFin(fechaInicio.plusMinutes(60).toLocalTime());
+                    cita.setDisponible(true); // Por defecto, está disponible al añadirse
 
-                citasGeneradas.add(cita);
+                    citasGeneradas.add(cita);
+                }
 
                 fechaInicio = fechaInicio.plusHours(1);
             }
@@ -69,6 +76,11 @@ public class CitaServiceImpl implements CitaService{
 
         // Guardar las citas generadas en la base de datos
         return citaRepository.saveAll(citasGeneradas);
+    }
+
+    @Override
+    public List<Cita> obtenerCitasParaMes(int mes) {
+        return citaRepository.obtenerCitasParaMes(mes);
     }
 
     public void reservarCita(int theId) {
@@ -83,6 +95,15 @@ public class CitaServiceImpl implements CitaService{
         }
     }
 
+    @Override
+    public List<Cita> obtenerCitasDisponibles() {
+        return citaRepository.findByDisponible(true);
+    }
+
+    @Override
+    public List<Cita> obtenerCitasNoDisponibles(){
+        return citaRepository.findByDisponible(false);
+    }
 
 
 }

@@ -5,19 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95d759b5-ea98-416d-a32b-0dd90dbc5485" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_mysql_mysql_connector_j_8_0_33.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_security_3_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_6_1_5.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/dao/CitaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/dao/CitaRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/dao/HorarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/dao/HorarioRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/entity/Cita.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/entity/Cita.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/entity/Horario.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/entity/Horario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/rest/CitaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/rest/CitaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/service/CitaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/service/CitaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/service/CitaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/service/CitaServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/service/HorarioServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/service/HorarioServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Reservar.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Reservar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -51,9 +62,48 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Usuario/Desktop/Cursos/dev-spring-boot/05-spring-boot-security&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
   }
 }</component>
+  <component name="RunManager" selected="Application.BackendApplication">
+    <configuration name="BackendApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="alvarovalenzuela.backend.BackendApplication" />
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="alvarovalenzuela.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BackendApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="alvarovalenzuela.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="alvarovalenzuela.backend" />
+      <option name="MAIN_CLASS_NAME" value="alvarovalenzuela.backend.BackendApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BackendApplication" />
+        <item itemvalue="JUnit.BackendApplicationTests" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

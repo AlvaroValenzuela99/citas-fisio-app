@@ -19,9 +19,6 @@ public class Horario {
     @Column(name = "mes")
     private Integer mes;
 
-    @Column(name = "dia_semana")
-    private Integer diaSemana;
-
     @Column(name = "hora_inicio")
     private LocalTime horaInicio;
 
@@ -35,10 +32,9 @@ public class Horario {
 
     }
 
-    public Horario(Integer anio, Integer mes, Integer diaSemana, LocalTime horaInicio, LocalTime horaFin, boolean disponible) {
+    public Horario(Integer anio, Integer mes, LocalTime horaInicio, LocalTime horaFin, boolean disponible) {
         this.anio = anio;
         this.mes = mes;
-        this.diaSemana = diaSemana;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
         this.disponible = disponible;
@@ -68,13 +64,6 @@ public class Horario {
         this.mes = mes;
     }
 
-    public Integer getDiaSemana() {
-        return diaSemana;
-    }
-
-    public void setDiaSemana(Integer diaSemana) {
-        this.diaSemana = diaSemana;
-    }
 
     public LocalTime getHoraInicio() {
         return horaInicio;
@@ -106,7 +95,6 @@ public class Horario {
                 "id=" + id +
                 ", anio=" + anio +
                 ", mes=" + mes +
-                ", diaSemana=" + diaSemana +
                 ", horaInicio=" + horaInicio +
                 ", horaFin=" + horaFin +
                 ", disponible=" + disponible +

@@ -32,7 +32,7 @@ public class Cita {
     @Column(name = "telefono")
     private String telefono;
 
-    @Column(name = "dispoinble")
+    @Column(name = "disponible")
     private boolean disponible;
 
 

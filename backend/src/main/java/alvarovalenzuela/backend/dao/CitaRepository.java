@@ -10,4 +10,9 @@ import java.util.List;
 
 public interface CitaRepository extends JpaRepository<Cita, Integer> {
 
+    List<Cita> findByDisponible(boolean disponible);
+
+    @Query("SELECT c FROM Cita c WHERE MONTH(c.fechaCita) = :mes")
+    List<Cita> obtenerCitasParaMes(@Param("mes") int mes);
+
 }
