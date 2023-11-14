@@ -55,9 +55,9 @@ public class CitaServiceImpl implements CitaService{
         for (Horario horario : horariosDisponibles) {
             LocalDateTime fechaInicio = LocalDateTime.of(horario.getAnio(), mes, 1, horario.getHoraInicio().getHour(), horario.getHoraInicio().getMinute());
 
-            while (fechaInicio.isBefore(LocalDateTime.of(horario.getAnio(), mes + 1, 1, 0, 0))) {
+            while (fechaInicio.isBefore(LocalDateTime.of(horario.getAnio(), (mes < 12) ? mes + 1 : 1, 1, 0, 0))) {
                 // Verificar que la fecha de inicio esté dentro del rango de horaInicio a horaFin
-                // Y que no sea ni sábado ni domingo
+                // y que el día no sea sábado ni domingo
                 if (!fechaInicio.toLocalTime().isBefore(horario.getHoraInicio())
                         && fechaInicio.toLocalTime().isBefore(horario.getHoraFin())
                         && (fechaInicio.getDayOfWeek() != DayOfWeek.SATURDAY && fechaInicio.getDayOfWeek() != DayOfWeek.SUNDAY)) {

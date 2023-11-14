@@ -5,19 +5,20 @@ import axios from 'axios';
 
 export default function Reservar() {
 
+  const [selectedMonth, setSelectedMonth] = useState(1); // Mes inicial
   const [citasDisponibles, setCitasDisponibles] = useState([]);
 
 
   useEffect(() => {
     // Hacer una solicitud al backend para obtener las citas disponibles
-    axios.get('/api/citas/nodisponibles')
+    axios.get(`/api/citas/${selectedMonth}`)
       .then(response => {
         setCitasDisponibles(response.data);
       })
       .catch(error => {
         console.error('Error al obtener citas disponibles:', error);
       });
-  }, []);  // Este efecto se ejecutará solo una vez al montar el componente
+  }, [selectedMonth]);  // Este efecto se ejecutará solo una vez que selectedMonth cambie
 
   return (
     <div className='App'>
@@ -25,7 +26,7 @@ export default function Reservar() {
       <div className='container'>
         <p>¡Aquí puedes reservar tu cita!</p>
 
-        <Calendar />
+        <Calendar onMonthChange={setSelectedMonth} />
 
         <ul>
           {citasDisponibles.map(cita => (

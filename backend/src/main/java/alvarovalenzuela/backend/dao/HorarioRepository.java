@@ -10,6 +10,6 @@ import java.util.List;
 public interface HorarioRepository extends JpaRepository<Horario, Integer> {
 
     @Query("SELECT h FROM Horario h WHERE h.mes = :mes AND h.disponible = true")
-    List<Horario> obtenerHorariosDisponiblesParaMes(@Param("mes") int mes);
+    List<Horario> obtenerHorariosDisponiblesParaMes(@Param("mes") int mes);;
 
 }
