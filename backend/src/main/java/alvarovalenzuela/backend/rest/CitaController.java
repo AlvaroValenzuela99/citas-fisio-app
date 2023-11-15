@@ -39,7 +39,7 @@ public class CitaController {
     public ResponseEntity<List<Cita>> getCitasDisponibles(@PathVariable int anio, @PathVariable int mes) {
         try {
             // Verificar si ya hay citas generadas para este mes
-            List<Cita> citasExistentes = citaService.obtenerCitasParaMes(mes);
+            List<Cita> citasExistentes = citaService.obtenerCitasParaMes(anio, mes);
 
             if (citasExistentes.isEmpty()) {
                 // Si no hay citas existentes, genera las citas para el mes proporcionado

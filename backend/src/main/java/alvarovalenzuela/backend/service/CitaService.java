@@ -19,7 +19,7 @@ public interface CitaService {
 
     List<Cita> generarCitasDisponiblesParaMes(int anio, int mes);
 
-    List<Cita> obtenerCitasParaMes(int mes);
+    List<Cita> obtenerCitasParaMes(int anio, int mes);
 
     void reservarCita(int citaId);
 

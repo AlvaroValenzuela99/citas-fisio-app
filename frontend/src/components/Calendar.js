@@ -1,35 +1,38 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import Fullcalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
-const Calendar = ({ onMonthChange }) => {
+const Calendar = ({ onMonthChange, onDayClick }) => {
 
-  const [currentMonth, setCurrentMonth] = useState(null);
   const calendarRef = useRef(null);
 
-  useEffect(() => {
-    // Notificar al componente principal sobre el cambio de mes
-    if (currentMonth !== null) {
-      onMonthChange(currentMonth);
+  const handleDatesSet = (info) => {
+    if (calendarRef.current) {
+      const calendarApi = calendarRef.current.getApi();
+      const currentDate = calendarApi.getDate();
+      const monthNumber = currentDate.getMonth() + 1;
+      const yearNumber = currentDate.getFullYear();
+      onMonthChange({ month: monthNumber, year: yearNumber });
     }
-  }, [currentMonth, onMonthChange]);
+  };
 
-  const handleViewDidMount = (info) => {
-    // Obtener el número del mes cuando el componente de calendario se monta
-    const monthNumber = new Date(info.view.currentStart).getMonth() + 1;
-    setCurrentMonth(monthNumber);
+  const handleDateClick = (arg) => {
+    onDayClick(arg.date);
   };
 
   return (
     <div>
-        <Fullcalendar 
+      <Fullcalendar
         ref={calendarRef}
-        plugins={[dayGridPlugin, interactionPlugin]} 
+        plugins={[dayGridPlugin, interactionPlugin]}
         initialView={'dayGridMonth'}
-        viewDidMount={handleViewDidMount}
-        />
+        weekends={false}
+        datesSet={handleDatesSet}
+        dateClick={handleDateClick}
+      />
     </div>
   );
-}
+};
+
 export default Calendar;

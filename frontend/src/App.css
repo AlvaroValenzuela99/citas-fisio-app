@@ -36,3 +36,10 @@
   padding: 20px 40px;
   border-radius: 10px;
 }
+
+.reservas{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 500px;
+}

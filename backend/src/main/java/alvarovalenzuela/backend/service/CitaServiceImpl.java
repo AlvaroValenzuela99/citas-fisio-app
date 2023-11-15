@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CitaServiceImpl implements CitaService{
@@ -93,8 +92,8 @@ public class CitaServiceImpl implements CitaService{
     }
 
     @Override
-    public List<Cita> obtenerCitasParaMes(int mes) {
-        return citaRepository.obtenerCitasParaMes(mes);
+    public List<Cita> obtenerCitasParaMes(int anio, int mes) {
+        return citaRepository.obtenerCitasParaMes(anio, mes);
     }
 
     public void reservarCita(int theId) {
