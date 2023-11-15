@@ -13,11 +13,9 @@ public class Horario {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "anio")
-    private Integer anio;
+    @Column(name = "dia_semana")
+    private Integer diaSemana;
 
-    @Column(name = "mes")
-    private Integer mes;
 
     @Column(name = "hora_inicio")
     private LocalTime horaInicio;
@@ -32,9 +30,8 @@ public class Horario {
 
     }
 
-    public Horario(Integer anio, Integer mes, LocalTime horaInicio, LocalTime horaFin, boolean disponible) {
-        this.anio = anio;
-        this.mes = mes;
+    public Horario(Integer diaSemana, LocalTime horaInicio, LocalTime horaFin, boolean disponible) {
+        this.diaSemana = diaSemana;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
         this.disponible = disponible;
@@ -48,20 +45,12 @@ public class Horario {
         this.id = id;
     }
 
-    public Integer getAnio() {
-        return anio;
+    public Integer getDiaSemana() {
+        return diaSemana;
     }
 
-    public void setAnio(Integer anio) {
-        this.anio = anio;
-    }
-
-    public Integer getMes() {
-        return mes;
-    }
-
-    public void setMes(Integer mes) {
-        this.mes = mes;
+    public void setDiaSemana(Integer diaSemana) {
+        this.diaSemana = diaSemana;
     }
 
 
@@ -93,8 +82,7 @@ public class Horario {
     public String toString() {
         return "Horario{" +
                 "id=" + id +
-                ", anio=" + anio +
-                ", mes=" + mes +
+                ", diaSemana=" + diaSemana +
                 ", horaInicio=" + horaInicio +
                 ", horaFin=" + horaFin +
                 ", disponible=" + disponible +

@@ -35,15 +35,15 @@ public class CitaController {
     // Crear nuevas citas a partir de horarios. Si ya existen, mostrarlas.
     // Esto va a permitir añadir dinámicamente nuevos horarios, y que se creen citas nuevas para otros meses automáticamente,
     // al hacer la primera petición
-    @GetMapping("/{mes}")
-    public ResponseEntity<List<Cita>> getCitasDisponibles(@PathVariable int mes) {
+    @GetMapping("/{anio}/{mes}")
+    public ResponseEntity<List<Cita>> getCitasDisponibles(@PathVariable int anio, @PathVariable int mes) {
         try {
             // Verificar si ya hay citas generadas para este mes
             List<Cita> citasExistentes = citaService.obtenerCitasParaMes(mes);
 
             if (citasExistentes.isEmpty()) {
                 // Si no hay citas existentes, genera las citas para el mes proporcionado
-                List<Cita> citasGeneradas = citaService.generarCitasDisponiblesParaMes(mes);
+                List<Cita> citasGeneradas = citaService.generarCitasDisponiblesParaMes(anio, mes);
 
                 // Puedes devolver solo las citas generadas o combinarlas con las existentes según sea necesario
                 return ResponseEntity.ok(citasGeneradas);

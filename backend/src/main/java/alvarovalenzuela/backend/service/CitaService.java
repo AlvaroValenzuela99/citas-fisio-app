@@ -17,7 +17,7 @@ public interface CitaService {
 
     void deleteById(int theId);
 
-    List<Cita> generarCitasDisponiblesParaMes(int mes);
+    List<Cita> generarCitasDisponiblesParaMes(int anio, int mes);
 
     List<Cita> obtenerCitasParaMes(int mes);
 

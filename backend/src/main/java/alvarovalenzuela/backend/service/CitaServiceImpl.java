@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -48,34 +50,46 @@ public class CitaServiceImpl implements CitaService{
     }
 
     @Override
-    public List<Cita> generarCitasDisponiblesParaMes(int mes) {
-        List<Horario> horariosDisponibles = horarioRepository.obtenerHorariosDisponiblesParaMes(mes);
+    public List<Cita> generarCitasDisponiblesParaMes(int anio, int mes) {
         List<Cita> citasGeneradas = new ArrayList<>();
 
-        for (Horario horario : horariosDisponibles) {
-            LocalDateTime fechaInicio = LocalDateTime.of(horario.getAnio(), mes, 1, horario.getHoraInicio().getHour(), horario.getHoraInicio().getMinute());
+        for (int dia = 1; dia <= obtenerUltimoDiaDelMes(anio, mes); dia++) {
+            // Obtener el día de la semana para la fecha actual
+            LocalDate fechaActual = LocalDate.of(anio, mes, dia);
+            DayOfWeek diaSemana = fechaActual.getDayOfWeek();
 
-            while (fechaInicio.getMonthValue() == mes) {
-                // Verificar que la fecha de inicio esté dentro del rango de horaInicio a horaFin
-                // y que el día no sea sábado ni domingo
-                if (!fechaInicio.toLocalTime().isBefore(horario.getHoraInicio())
-                        && fechaInicio.toLocalTime().isBefore(horario.getHoraFin())
-                        && (fechaInicio.getDayOfWeek() != DayOfWeek.SATURDAY && fechaInicio.getDayOfWeek() != DayOfWeek.SUNDAY)) {
-                    Cita cita = new Cita();
-                    cita.setFechaCita(fechaInicio.toLocalDate());
-                    cita.setHoraInicio(fechaInicio.toLocalTime());
-                    cita.setHoraFin(fechaInicio.plusMinutes(60).toLocalTime());
-                    cita.setDisponible(true); // Por defecto, está disponible al añadirse
+            // Obtener los horarios disponibles para el día de la semana actual
+            List<Horario> horariosDisponibles = horarioRepository.obtenerHorariosDisponiblesParaDiaSemana(diaSemana.getValue());
 
-                    citasGeneradas.add(cita);
+            for (Horario horario : horariosDisponibles) {
+                LocalDateTime fechaInicio = LocalDateTime.of(anio, mes, dia, horario.getHoraInicio().getHour(), horario.getHoraInicio().getMinute());
+
+                // Iterar desde la hora de inicio hasta la hora de fin
+                while (fechaInicio.toLocalTime().isBefore(horario.getHoraFin())) {
+                    // Verificar que la fecha de inicio esté dentro del rango de horaInicio a horaFin
+                    if (!fechaInicio.toLocalTime().isBefore(horario.getHoraInicio())) {
+                        Cita cita = new Cita();
+                        cita.setFechaCita(fechaInicio.toLocalDate());
+                        cita.setHoraInicio(fechaInicio.toLocalTime());
+                        cita.setHoraFin(fechaInicio.plusMinutes(60).toLocalTime());
+                        cita.setDisponible(true); // Por defecto, está disponible al añadirse
+
+                        citasGeneradas.add(cita);
+                    }
+
+                    fechaInicio = fechaInicio.plusHours(1);
                 }
-
-                fechaInicio = fechaInicio.plusHours(1);
             }
         }
 
         // Guardar las citas generadas en la base de datos
         return citaRepository.saveAll(citasGeneradas);
+    }
+
+    // Método para obtener el último día del mes
+    private int obtenerUltimoDiaDelMes(int anio, int mes) {
+        YearMonth yearMonthObject = YearMonth.of(anio, mes);
+        return yearMonthObject.lengthOfMonth();
     }
 
     @Override
