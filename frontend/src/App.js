@@ -5,6 +5,7 @@ import Paciente from './pages/Paciente';
 import Admin from './pages/Admin';
 import Reservar from './pages/Reservar';
 import CambiarCita from './pages/CambiarCita';
+import Gracias from './pages/Gracias';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/paciente" element={<Paciente />}/>
         <Route path="/paciente/reservar" element={<Reservar />} />
         <Route path="/paciente/cambiar-cita" element={<CambiarCita />} />
+        <Route path="/paciente/gracias" element={<Gracias />} />
         
 
       {/* Ruta Admin */}

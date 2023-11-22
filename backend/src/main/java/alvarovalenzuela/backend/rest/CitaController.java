@@ -56,4 +56,32 @@ public class CitaController {
         }
     }
 
+
+    // Endpoint para actualizar una cita existente
+   @PutMapping("/reservar/{idCita}")
+    public ResponseEntity<Cita> actualizarCita(@PathVariable int idCita, @RequestBody Cita datosCita){
+        try {
+            // Obtener la cita existente por ID
+            Cita citaExistente = citaService.findById(idCita);
+
+            if (citaExistente != null) {
+                // Actualizar la cita existente con los nuevos valores
+                citaExistente.setNombre(datosCita.getNombre());
+                citaExistente.setApellidos(datosCita.getApellidos());
+                citaExistente.setTelefono(datosCita.getTelefono());
+                citaExistente.setDisponible(false); // Cambiar "disponible" a false
+
+                // Guardar la cita actualizada en la base de datos
+                Cita citaActualizada = citaService.save(citaExistente);
+
+                return ResponseEntity.ok(citaActualizada);
+            } else {
+                // La cita no existe
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
 }

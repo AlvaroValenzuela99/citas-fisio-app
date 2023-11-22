@@ -96,18 +96,6 @@ public class CitaServiceImpl implements CitaService{
         return citaRepository.obtenerCitasParaMes(anio, mes);
     }
 
-    public void reservarCita(int theId) {
-        Cita cita = citaRepository.findById(theId)
-                .orElseThrow(() -> new RuntimeException("No se ha encontrado la cita id - " + theId));
-
-        if (cita.isDisponible()) {
-            cita.setDisponible(false);
-            citaRepository.save(cita);
-        } else {
-            throw new RuntimeException("La cita ya ha sido reservada.");
-        }
-    }
-
     @Override
     public List<Cita> obtenerCitasDisponibles() {
         return citaRepository.findByDisponible(true);
