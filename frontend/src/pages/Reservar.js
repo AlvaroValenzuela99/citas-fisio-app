@@ -76,7 +76,6 @@ export default function Reservar() {
         nombre,
         apellidos,
         telefono,
-    
       });
 
       // Manejar la respuesta del backend según tus necesidades

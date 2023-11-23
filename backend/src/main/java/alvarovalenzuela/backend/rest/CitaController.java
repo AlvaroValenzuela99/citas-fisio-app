@@ -32,6 +32,16 @@ public class CitaController {
         return citaService.obtenerCitasNoDisponibles();
     }
 
+    // Obtener citas por ID
+    @GetMapping("/cita/{idCita}")
+    public Cita obtenerCita(@PathVariable int idCita){
+
+        Cita cita = citaService.findById(idCita);
+
+        return cita;
+    }
+
+
     // Crear nuevas citas a partir de horarios. Si ya existen, mostrarlas.
     // Esto va a permitir añadir dinámicamente nuevos horarios, y que se creen citas nuevas para otros meses automáticamente,
     // al hacer la primera petición
