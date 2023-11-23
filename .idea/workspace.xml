@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="95d759b5-ea98-416d-a32b-0dd90dbc5485" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/rest/CitaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/rest/CitaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/service/CitaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/service/CitaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/service/CitaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/alvarovalenzuela/backend/service/CitaServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Calendar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/Reservar.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Reservar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -21,6 +21,7 @@ const Calendar = ({ onMonthChange, onDayClick }) => {
     onDayClick(arg.date);
   };
 
+
   return (
     <div>
       <Fullcalendar

@@ -103,3 +103,14 @@
   font-weight: 700;
   font-size: 30px;
 }
+
+.fc-daygrid-day{
+  cursor: pointer;
+}
+
+.texto-cabecera{
+  text-align: center;
+}
+.cto-titulo{
+  font-size: 22px;
+}

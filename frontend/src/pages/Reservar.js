@@ -57,6 +57,7 @@ export default function Reservar() {
     return `${formattedParteEntera}:${minutos}`;
   };
 
+
   // Reservar la cita al hacer submit
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -92,7 +93,11 @@ export default function Reservar() {
     <div className='App'>
       <h1 className='title'>Clínica de Fisioterapia Álvaro Valenzuela</h1>
       <div className='container'>
-      <p>¡Aquí puedes reservar tu cita!</p>
+        <div className='texto-cabecera'>
+          <p className='cto-titulo'>¡Aquí puedes reservar tu cita!</p>
+          <p>(Pulsa en cualquier día para comprobar si existen citas disponibles)</p>
+        </div>
+      
         <div className='reservas'>
           
           <div className='calendario'>
@@ -103,13 +108,23 @@ export default function Reservar() {
 
               <div className='datos-paciente'>
                 <label>Nombre:</label>
-                <input type='text' placeholder='Nombre' name='nombre'></input>
+                <input type='text' placeholder='Nombre' name='nombre' required></input>
 
                 <label>Apellidos:</label>
-                <input type='text' placeholder='Apellidos' name='apellidos'></input>
+                <input type='text' placeholder='Apellidos' name='apellidos' required></input>
 
                 <label>Teléfono:</label>
-                <input type='tel' placeholder='Teléfono' name='telefono'></input>  
+                <input type='tel' 
+                    placeholder='Teléfono' 
+                    name='telefono' 
+                    onKeyPress={(e) => {
+                        // Permite solo números y teclas especiales (por ejemplo, retroceso)
+                        if (!/[\d\b]/.test(e.key)) {
+                          e.preventDefault();
+                        }
+                      }}
+                      maxLength='9'
+                    required></input>  
               </div>
 
                 {/* Mostrar las citas del día solo al hacer clic */}
@@ -122,7 +137,7 @@ export default function Reservar() {
                           id={`cita-${cita.id}`}
                           name='citaSeleccionada'
                           value={cita.id}
-                          // Puedes manejar la lógica de selección aquí según tus necesidades
+                          required
                         />
                         <label htmlFor={`cita-${cita.id}`}>
                           {formatHora(cita.horaInicio)} a {formatHora(cita.horaFin)}
