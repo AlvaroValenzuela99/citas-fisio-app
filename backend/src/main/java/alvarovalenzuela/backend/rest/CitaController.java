@@ -94,4 +94,31 @@ public class CitaController {
         }
     }
 
+    // Endpoint para "cancelar" una cita, es decir, devolverla a disponibilidad true
+    @PutMapping("/cancelarcita/{idCita}")
+    public ResponseEntity<Cita> cancelarCita(@PathVariable int idCita){
+        try {
+            // Obtener la cita existente por ID
+            Cita citaExistente = citaService.findById(idCita);
+
+            if (citaExistente != null) {
+                // Devolver la cita a disponible y sin valores
+                citaExistente.setNombre(null);
+                citaExistente.setApellidos(null);
+                citaExistente.setTelefono(null);
+                citaExistente.setDisponible(true); // Cambiar "disponible" a true
+
+                // Guardar la cita actualizada en la base de datos
+                Cita citaActualizada = citaService.save(citaExistente);
+
+                return ResponseEntity.ok(citaActualizada);
+            } else {
+                // La cita no existe
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
 }

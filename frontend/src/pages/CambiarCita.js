@@ -49,6 +49,23 @@ export default function CambiarCita() {
     }
   }
 
+  const handleCancelarCita = async (event) => {
+    try {
+      // Elimina la cita estableciendo nombre, apellidos y telefono como null y disponible como true
+      const response = await axios.put(`/api/citas/cancelarcita/${idCita}`, {
+        nombre: null,
+        apellidos: null,
+        telefono: null,
+        disponible: true,
+      });
+
+      console.log('Respuesta del servidor:', response.data);
+
+    } catch (error) {
+      console.error('Error al enviar la solicitud al backend:', error);
+    }
+  }
+
     // Determina si mostrar el segundo formulario basado en si hay un ID de cita almacenado
     const mostrarSegundoFormulario = idCita !== null;
 
@@ -59,44 +76,50 @@ export default function CambiarCita() {
         <div className='texto-cabecera'>
           <p className='cto-titulo'>¡Aquí puedes cambiar/eliminar tu cita!</p>
           <p>Introduce aquí debajo el ID de tu cita:</p>
-
+        </div>
           <form onSubmit={handleBusquedaCita}>
             <input type='text' placeholder='ID de la cita' name='idCita'></input>
             <button type='submit'>Buscar cita</button>
           </form>
 
           {/* Muestra el segundo formulario solo si hay un ID de cita almacenado */}
-          {mostrarSegundoFormulario && (  
-          <form onSubmit={handleCambioCita}>
+          {mostrarSegundoFormulario && (
+            <div>  
+              <form onSubmit={handleCambioCita}>
 
-          <div className='datos-paciente'>
-            <label>Nombre:</label>
-            <input type='text' placeholder='Nombre' name='nombre' defaultValue={cita.nombre} required></input>
+              <div className='datos-paciente'>
+                <label>Nombre:</label>
+                <input type='text' placeholder='Nombre' name='nombre' defaultValue={cita.nombre} required></input>
 
-            <label>Apellidos:</label>
-            <input type='text' placeholder='Apellidos' name='apellidos' defaultValue={cita.apellidos} required></input>
+                <label>Apellidos:</label>
+                <input type='text' placeholder='Apellidos' name='apellidos' defaultValue={cita.apellidos} required></input>
 
-            <label>Teléfono:</label>
-            <input type='tel' 
-                placeholder='Teléfono' 
-                name='telefono' 
-                onKeyPress={(e) => {
-                    // Permite solo números y teclas especiales (por ejemplo, retroceso)
-                    if (!/[\d\b]/.test(e.key)) {
-                      e.preventDefault();
-                    }
-                  }}
-                  maxLength='9'
-                  defaultValue={cita.telefono}
-                required></input> 
-          </div>
-          <div className='actualizar-cancelar'>
-                
-          </div>
+                <label>Teléfono:</label>
+                <input type='tel' 
+                    placeholder='Teléfono' 
+                    name='telefono' 
+                    onKeyPress={(e) => {
+                        // Permite solo números y teclas especiales (por ejemplo, retroceso)
+                        if (!/[\d\b]/.test(e.key)) {
+                          e.preventDefault();
+                        }
+                      }}
+                      maxLength='9'
+                      defaultValue={cita.telefono}
+                    required></input> 
+              </div>
+
+              <button type='submit'>Actualizar cita</button>
+
+              </form>
+
+              <div className='actualizar-cancelar'>
+                    <button onClick={handleCancelarCita}>Cancelar Cita</button>
+              </div>
             
-          </form>
+          </div>
           )}
-        </div>
+        
       </div>
     </div>
   )
