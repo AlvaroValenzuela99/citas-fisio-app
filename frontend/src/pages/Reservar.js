@@ -16,19 +16,16 @@ export default function Reservar() {
   
   const navigate = useNavigate();
   
-
   useEffect(() => {
     // Hacer una solicitud al backend para obtener las citas disponibles
     axios.get(`/api/citas/${selectedMonthYear.year}/${selectedMonthYear.month}`)
       .then(response => {
+        console.log('Citas del backend:', response.data);
         setCitasDisponibles(response.data);
       })
       .catch(error => {
         console.error('Error al obtener citas disponibles:', error);
       });
-
-    // Limpiar las citas del día al cambiar de mes
-    setCitasDelDia([]);
   }, [selectedMonthYear]);
 
 
