@@ -28,7 +28,7 @@
 }
 
 .container-admin{
-  width: 60%;
+  width: 75%;
   min-height: 400px;
   background-color: #fff;
   padding: 30px 30px;
@@ -130,6 +130,33 @@
 .panel{
   display: flex;
   width: 100%;
-  justify-content: space-around;
   align-items: center;
+  gap: 50px;
+}
+
+.cuadro-hoy{
+  width: 50%;
+}
+.cuadro-todas{
+  width: 50%;
+}
+
+table{
+  background-color: #fbffe1;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th{
+  background-color: #40513B;
+  color: #FFF;
+  text-align: left;
+}
+
+table, th, td{
+  border: 1px solid black;
+  padding: 10px;
+}
+tr:nth-child(odd){
+  background-color: #d1d4bd;
 }

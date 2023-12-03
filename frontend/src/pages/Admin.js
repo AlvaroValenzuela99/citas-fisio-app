@@ -4,43 +4,48 @@ import axios from 'axios';
 export default function Admin() {
 
   const [citasReservadas, setCitasReservadas] = useState([]);
+  const [citasDelDiaSimulado, setCitasDelDiaSimulado] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/citas/nodisponibles')
-      .then(response => {
+    const cargarCitasReservadas = async () => {
+      try {
+        const response = await axios.get('/api/citas/nodisponibles');
         setCitasReservadas(response.data);
-        console.log(response.data);
-      })
-      .catch(error => {
+
+        const fechaSimulada = [2023, 12, 1];
+        const citasDelDia = response.data.filter(cita => (
+          cita.fechaCita[0] === fechaSimulada[0] &&
+          cita.fechaCita[1] === fechaSimulada[1] &&
+          cita.fechaCita[2] === fechaSimulada[2]
+        ));
+        setCitasDelDiaSimulado(citasDelDia);
+      } catch (error) {
         console.error('Error al obtener las citas reservadas:', error);
-      })
-  }, []);
+      }
+    };
 
-  // Obtener la fecha actual en formato de array [año, mes, día]
-  // const fechaActualArray = new Date().toLocaleDateString().split('/').map(Number);
+    cargarCitasReservadas();
+  }, []); // Solo se ejecuta al montar el componente
 
-
-  // Filtrar citas para obtener solo las del día actual
-  /*
-  const citasDeHoy = citasReservadas.filter(cita => {
-    return (
-      cita.fecha[0] === fechaActualArray[2] && // año
-      cita.fecha[1] === fechaActualArray[1] && // mes
-      cita.fecha[2] === fechaActualArray[0]    // día
-    );
-  });
-  */
-   // Fecha a simular: 1 de diciembre de 2023
-   const fechaSimulada = [2023, 12, 1];
-
-   // Filtrar citas para obtener solo las del día simulado
-   const citasDelDiaSimulado = citasReservadas.filter(cita => {
-     return (
-       cita.fechaCita[0] === fechaSimulada[0] &&
-       cita.fechaCita[1] === fechaSimulada[1] &&
-       cita.fechaCita[2] === fechaSimulada[2]
-     );
-   });
+  const handleCancelarCita = async (idCita) => {
+    try {
+      // Lógica para cancelar la cita en el backend
+      await axios.put(`/api/citas/cancelarcita/${idCita}`, {
+        nombre: null,
+        apellidos: null,
+        telefono: null,
+        disponible: true,
+      });
+  
+      console.log('Cita cancelada con éxito');
+  
+      // Actualizar el estado después de cancelar la cita
+      setCitasReservadas(prevCitas => prevCitas.filter(cita => cita.id !== idCita));
+      setCitasDelDiaSimulado(prevCitas => prevCitas.filter(cita => cita.id !== idCita))
+    } catch (error) {
+      console.error('Error al enviar la solicitud al backend:', error);
+    }
+  };
     // Función para formatear la hora
     const formatHora = (hora) => {
       // Convertir el número en cadena y agregar un cero si es necesario
@@ -57,6 +62,12 @@ export default function Admin() {
   
       return `${formattedParteEntera}:${minutos}`;
     };
+
+    // Funcion para formatear la fecha
+    const formatFecha = (fechaCita) => {
+      const [anio, mes, dia] = fechaCita;
+      return `${anio}/${mes}/${dia}`;
+    }
 
   return (
     <div className='App'>
@@ -75,7 +86,7 @@ export default function Admin() {
                   <th>Hora</th>
                   <th>Nombre</th>
                   <th>Apellidos</th>
-                  <th>Telefono</th>
+                  <th>Teléfono</th>
                 </tr>
               </thead>
               <tbody>
@@ -90,7 +101,33 @@ export default function Admin() {
               </tbody>
             </table>
           </div>
-          <div className='cuadro-todas'>citas futuro</div>
+          <div className='cuadro-todas'>
+            <h3>Todas las citas reservadas</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                  <th>Nombre</th>
+                  <th>Apellidos</th>
+                  <th>Teléfono</th>
+                  <th>Cancelar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {citasReservadas.map(cita => (
+                  <tr key={cita.id}>
+                    <td>{formatFecha(cita.fechaCita)}</td>
+                    <td>{formatHora(cita.horaInicio)} a {formatHora(cita.horaFin)}</td>
+                    <td>{cita.nombre}</td>
+                    <td>{cita.apellidos}</td>
+                    <td>{cita.telefono}</td>
+                    <td><button onClick={() => handleCancelarCita(cita.id)}>Cancelar</button></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
