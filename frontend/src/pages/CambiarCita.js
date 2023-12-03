@@ -5,6 +5,7 @@ import axios from 'axios';
 export default function CambiarCita() {
   const [idCita, setIdCita] = useState(null);
   const [cita, setCita] = useState(null);
+  const [mensajeError, setMensajeError] = useState('');
 
   const handleBusquedaCita = async (event) => {
     event.preventDefault();
@@ -18,12 +19,23 @@ export default function CambiarCita() {
 
       console.log('Respuesta del servidor:', response.data);
 
-      // Almacena el ID de la cita y la información de la cita en el estado
-      setIdCita(idCita);
-      setCita(response.data);
+      const citaData = response.data;
+
+      if (!citaData || citaData.disponible) {
+        setIdCita(null); // Resetear el ID en caso de error
+        setCita(null);
+        setMensajeError('No hay citas reservadas con ese ID.');
+      } else {
+        setIdCita(idCita);
+        setCita(citaData);
+        setMensajeError(''); // Limpiar los mensajes de error previos
+      }
 
     }catch(error){
       console.error('Error al enviar la solicitud al backend:', error);
+      setIdCita(null); // Resetear el ID en caso de error
+      setCita(null);
+      setMensajeError('No hay citas reservadas con ese ID.');
     }
   }
 
@@ -36,7 +48,7 @@ export default function CambiarCita() {
 
     try{
 
-      const response = await axios.put(`/api/citas/cita/${idCita}`, {
+      const response = await axios.put(`/api/citas/reservar/${idCita}`, {
         nombre,
         apellidos,
         telefono,
@@ -78,12 +90,12 @@ export default function CambiarCita() {
           <p>Introduce aquí debajo el ID de tu cita:</p>
         </div>
           <form onSubmit={handleBusquedaCita}>
-            <input type='text' placeholder='ID de la cita' name='idCita'></input>
+            <input type='text' placeholder='ID de la cita' name='idCita' required></input>
             <button type='submit'>Buscar cita</button>
           </form>
 
           {/* Muestra el segundo formulario solo si hay un ID de cita almacenado */}
-          {mostrarSegundoFormulario && (
+          {mostrarSegundoFormulario ? (
             <div>  
               <form onSubmit={handleCambioCita}>
 
@@ -118,6 +130,8 @@ export default function CambiarCita() {
               </div>
             
           </div>
+          ) : (
+            <p>{mensajeError}</p>
           )}
         
       </div>
