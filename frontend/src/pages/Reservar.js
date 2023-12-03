@@ -20,7 +20,6 @@ export default function Reservar() {
     // Hacer una solicitud al backend para obtener las citas disponibles
     axios.get(`/api/citas/${selectedMonthYear.year}/${selectedMonthYear.month}`)
       .then(response => {
-        console.log('Citas del backend:', response.data);
         setCitasDisponibles(response.data);
       })
       .catch(error => {

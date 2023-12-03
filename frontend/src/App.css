@@ -65,6 +65,71 @@
   align-items: center;
 }
 
+.input-buscarcita{
+  padding: 7px;
+  border: 1px solid #bdbdbd
+}
+
+.input-buscarcita:focus{
+  border: 1px solid #bdbdbd;
+  outline: none;
+}
+
+.boton-buscarcita{
+  padding: 7px 15px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.formulario-cambio{
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  gap: 30px;
+}
+
+.cambio-paciente{
+  display: flex;
+  flex-direction: column;
+}
+
+.cambio-paciente input{
+  padding: 7px;
+  border: 1px solid #bdbdbd
+}
+
+.cambio-paciente input:focus{
+  border: 1px solid #bdbdbd;
+  outline: none;
+}
+
+.actualizar-cancelar{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.actualizar-cita{
+  padding: 10px 15px;
+  background-color: #0069D9;
+  border: none;
+  color: #FFF;
+  cursor: pointer;
+}
+
+.cancelar-cita{
+  padding: 10px 15px;
+  background-color: #C82333;
+  border: none;
+  color: #FFF;
+  cursor: pointer;
+}
+
+.actualizar-cita:hover, .cancelar-cita:hover{
+  opacity: .85;
+}
+
 .datos-paciente{
   display: flex;
   justify-content: flex-start;

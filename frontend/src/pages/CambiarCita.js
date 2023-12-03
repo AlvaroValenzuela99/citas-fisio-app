@@ -6,6 +6,7 @@ export default function CambiarCita() {
   const [idCita, setIdCita] = useState(null);
   const [cita, setCita] = useState(null);
   const [mensajeError, setMensajeError] = useState('');
+  const [mensajeExito, setMensajeExito] = useState('');
 
   const handleBusquedaCita = async (event) => {
     event.preventDefault();
@@ -55,6 +56,7 @@ export default function CambiarCita() {
       });
 
       console.log('Respuesta del servidor:', response.data);
+      setMensajeExito('¡Cambio realizado con éxito!');
 
     }catch(error){
       console.error('Error al enviar la solicitud al backend:', error);
@@ -72,6 +74,7 @@ export default function CambiarCita() {
       });
 
       console.log('Respuesta del servidor:', response.data);
+      setMensajeExito('¡Cambio realizado con éxito!');
 
     } catch (error) {
       console.error('Error al enviar la solicitud al backend:', error);
@@ -90,16 +93,16 @@ export default function CambiarCita() {
           <p>Introduce aquí debajo el ID de tu cita:</p>
         </div>
           <form onSubmit={handleBusquedaCita}>
-            <input type='text' placeholder='ID de la cita' name='idCita' required></input>
-            <button type='submit'>Buscar cita</button>
+            <input className='input-buscarcita' type='text' placeholder='ID de la cita' name='idCita' required></input>
+            <button className='boton-buscarcita' type='submit'>Buscar cita</button>
           </form>
 
           {/* Muestra el segundo formulario solo si hay un ID de cita almacenado */}
           {mostrarSegundoFormulario ? (
             <div>  
-              <form onSubmit={handleCambioCita}>
+              <form className='formulario-cambio' onSubmit={handleCambioCita}>
 
-              <div className='datos-paciente'>
+              <div className='cambio-paciente'>
                 <label>Nombre:</label>
                 <input type='text' placeholder='Nombre' name='nombre' defaultValue={cita.nombre} required></input>
 
@@ -121,14 +124,15 @@ export default function CambiarCita() {
                     required></input> 
               </div>
 
-              <button type='submit'>Actualizar cita</button>
-
+              
+              <div className='actualizar-cancelar'>
+                    <button className='actualizar-cita' type='submit'>Actualizar cita</button>
+                    <button className='cancelar-cita' onClick={handleCancelarCita}>Cancelar Cita</button>
+              </div>
               </form>
 
-              <div className='actualizar-cancelar'>
-                    <button onClick={handleCancelarCita}>Cancelar Cita</button>
-              </div>
-            
+
+            {mensajeExito && <p>{mensajeExito}</p>}
           </div>
           ) : (
             <p>{mensajeError}</p>
