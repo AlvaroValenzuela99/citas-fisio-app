@@ -230,3 +230,33 @@ table, th, td{
 tr:nth-child(odd){
   background-color: #d1d4bd;
 }
+
+.formulario-login{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.formulario-login input{
+  padding: 8px;
+  width: 100%;
+}
+
+.formulario-login button{
+  margin: auto;
+  margin-top: 30px;
+  width: 60%;
+  padding: 15px;
+  background-color: #9DC08B;
+  border: none;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 16px;
+  color: #FFF;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.formulario-login button:hover{
+  opacity: .8;
+}
