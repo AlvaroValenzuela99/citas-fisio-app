@@ -125,6 +125,7 @@ export default function Reservar() {
                 {/* Mostrar las citas del día solo al hacer clic */}
                 {citasDelDia.length > 0 && (
                   <div className='citas-disponibles'>
+                  <p className='titulo-formulario-reserva'>Citas disponibles:</p>
                     {citasDelDia.map(cita => (
                       <div key={cita.id}>
                         <input

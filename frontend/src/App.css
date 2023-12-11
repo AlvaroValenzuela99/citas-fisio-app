@@ -155,6 +155,11 @@
   box-sizing: border-box;
 }
 
+.titulo-formulario-reserva{
+  font-size: 18px;
+  font-weight: 500;
+}
+
 .btn-reservar{
   margin: auto;
   margin-top: 30px;
