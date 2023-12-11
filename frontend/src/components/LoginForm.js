@@ -12,7 +12,7 @@ const LoginForm = ({ handleLogin }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://tu-backend.com/api/login', {
+      const response = await axios.post('http://localhost:8080/api/citas/login', {
         username,
         password,
       });

@@ -1,6 +1,7 @@
 package alvarovalenzuela.backend.rest;
 
 import alvarovalenzuela.backend.entity.Cita;
+import alvarovalenzuela.backend.service.AuthService;
 import alvarovalenzuela.backend.service.CitaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/citas")
@@ -121,4 +123,21 @@ public class CitaController {
         }
     }
 
+    @Autowired
+    private AuthService authService;
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody Map<String, String> credentials) {
+        String username = credentials.get("username");
+        String password = credentials.get("password");
+
+        if (authService.authenticate(username, password)) {
+            // Autenticación exitosa
+            // Puedes generar un token JWT y devolverlo al cliente, por ejemplo
+            // O simplemente devolver un mensaje de éxito
+            return ResponseEntity.ok("Autenticación exitosa");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
+        }
+    }
 }
