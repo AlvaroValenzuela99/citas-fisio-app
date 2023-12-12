@@ -13,6 +13,7 @@
   letter-spacing: 4px;
   font-size: 36px;
   font-weight: 400;
+  margin: 0 0 5px 0;
 }
 
 .container{
@@ -56,12 +57,15 @@
   min-height: 500px;
 }
 
+.calendario{
+  width: 100%;
+}
 
 .formulario-reserva{
   display: flex;
-  width: 100%;
+  width: 500px;
   flex-wrap: wrap;
-  margin-top: 30px;
+  margin-top: 10px;
   align-items: center;
 }
 
@@ -153,10 +157,15 @@
 .citas-disponibles{
   width: 50%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
 }
 
 .titulo-formulario-reserva{
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
 }
 
@@ -259,4 +268,83 @@ tr:nth-child(odd){
 
 .formulario-login button:hover{
   opacity: .8;
+}
+
+@media(max-width:768px){
+  .title{
+    padding: 0 10px;
+    text-align: center;
+    font-size: 24px;
+    margin: 20px;
+  }
+  .container{
+    padding: 10px 15px 20px 15px;
+    width: 85%;
+  }
+
+  .calendario{
+    width: 100%;
+  }
+
+  .fc .fc-toolbar.fc-header-toolbar{
+    margin-bottom: 0.75em;
+  }
+
+  .fc .fc-toolbar-title{
+    font-size: 24px;
+  }
+
+  .fc-toolbar-chunk{
+    display: flex;
+  }
+
+  table, th, td{
+    padding: 5px;
+  }
+
+  .formulario-reserva{
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  .btn-reservar{
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  .citas-disponibles{
+    font-size: 16px;
+  }
+
+  .formulario-login button{
+    width: 100%;
+  }
+
+  .container-admin{
+    width: 85%;
+    padding: 10px 15px;
+  }
+
+  .panel{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cuadro-hoy{
+    width: 100%;
+  }
+
+  .cuadro-todas{
+    width: 100%;
+    font-size: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .cancelar-cita{
+    font-size: 10px;
+    padding: 5px 10px;
+  }
 }

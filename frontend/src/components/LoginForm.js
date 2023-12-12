@@ -54,7 +54,7 @@ const LoginForm = ({ handleLogin }) => {
             />
             </label>
             <br />
-            <button type="submit">Iniciar sesión</button>
+            <button type="submit" className='boton-login'>Iniciar sesión</button>
         </form>
       </div>
     </div>

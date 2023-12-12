@@ -12,11 +12,13 @@ export default function Admin() {
         const response = await axios.get('/api/citas/nodisponibles');
         setCitasReservadas(response.data);
 
-        const fechaSimulada = [2023, 12, 1];
+        // Obtener la fecha actual en formato de array [año, mes, día]
+        const fechaActualArray = new Date().toLocaleDateString().split('/').map(Number);
+
         const citasDelDia = response.data.filter(cita => (
-          cita.fechaCita[0] === fechaSimulada[0] &&
-          cita.fechaCita[1] === fechaSimulada[1] &&
-          cita.fechaCita[2] === fechaSimulada[2]
+          cita.fechaCita[0] === fechaActualArray[2] &&
+          cita.fechaCita[1] === fechaActualArray[1] &&
+          cita.fechaCita[2] === fechaActualArray[0]
         ));
         setCitasDelDiaSimulado(citasDelDia);
       } catch (error) {
@@ -122,7 +124,7 @@ export default function Admin() {
                     <td>{cita.nombre}</td>
                     <td>{cita.apellidos}</td>
                     <td>{cita.telefono}</td>
-                    <td><button onClick={() => handleCancelarCita(cita.id)}>Cancelar</button></td>
+                    <td><button onClick={() => handleCancelarCita(cita.id)} className='cancelar-cita'>Cancelar</button></td>
                   </tr>
                 ))}
               </tbody>
